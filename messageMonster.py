@@ -1,6 +1,7 @@
 # you need to be totally rock solid in these areas so lets re-cap
 # this lesson is boring and you prolly know most of it but i can't build on shaky foundations
-# i tend to call lists[] an array and dicts{} an object, but they are both arrays as are tuples and sets
+
+# i tend to call lists[] a simple array and dicts{} an object, but they are both arrays as are tuples and sets
 # we will have nested arrays, arrays of objects and objects containing arrays and can get complicated
 # you have to be clear on how they bolt together and the when, where and why to use the right type
 # we will eventually use several languages so i will often use different words for the same thing
@@ -96,7 +97,7 @@ def listArrays():
     # its the same as saying print(messages[1])
     # this way we only keep numbers in sent not huge swathes of duplicate text
 
-    # lets iterate or walk through the sent_messages and print out the original message
+    # lets iterate or walk through the messages_sent and print out the original message
     # there are several ways to do this. We can call each item msgKey or x or whatever we want during the loop
     
     for msgKey in messages_sent:
@@ -105,19 +106,19 @@ def listArrays():
     print()
     # as long as the original message doesn't change this method will work fine
 
-    # if we needed the sent_message index or key as well as it's value during the loop we need another method of walking
+    # if we needed the messages_sent index or key as well as it's value during the loop we need another method of walking
     # one way is to use the range(), range(5) will get 5 items, if we use the highest key from len() it will do them all
     for i in range(len(messages_sent)):
         print('Loop {} messages_sent index = {} sent_message value = {} message[{}] = {} '.format(i, i, messages_sent[i], i, messages[messages_sent[i]])) # prints the index of the sent message
     
     
-    messages_sent.clear() # reset the sent items list
+    messages_sent.clear() # reset or empty the messages_sent list
     print()
 
     # nested arrays, 
-    # thinking of a user each row has a name,email,phone address etc
+    # thinking of a user now, each row has a name,email,phone address etc
+    # this is a simple array with another simple array inside the third row
     user = ['bob', 'smith', ['19 london road','nottingham', 'ng1 3ll']]
-    # last item is an array with 3 elements or values
     # user[0] is the first name, user[1] is the last name
     # user[2] is an array so to get the postcode it woulld be
     # postcode = user[2][2] this works but isn't very friendly and deeper nests gets worse
@@ -145,10 +146,10 @@ def listArrays():
 
     # main problem is that it sends all the messages to all the users all the time
     # in reality we will have a single message that goes out to a list of users
-    # the print list is also useless, doesn't tell us what date or who sent it to who and whether it failed 
+    # the print_all list is also useless, doesn't tell us what date or who sent it to who and whether it failed 
     # what happens when the list is too long?
-    # right now we are clearly missing a list of users with contact details
-    # the users may have a preferred method of contact, email, mqqt, phone, telegram
+    # Also right now we are clearly missing a list of users with contact details
+    # the users may have a preferred method of contact, email, text, mqqt, phone, telegram
     # These are all things to be addressed next and simple indexed arrays won't cut the mustard
 
     # PS: did you notice i created two functions send_all() and print_sent() INSIDE the simpleListArrays() function?
@@ -157,94 +158,94 @@ def listArrays():
 def dictLists():
     print('Working with dict{} objects')
     # dict{} or objects are way more easy to use, we use a name rather than an  index number to access it
-    # consider the user details we will need in the previous
-    andy = {'first_name': 'andy', 'last_name': 'Mac', 'email': 'aMac@b', 'phone': '+44 (0) 77777 66666'}
-    print(andy)
-    print('email = ', andy['email']) # very easy to follow this code
+    # consider the user details we will inevitably need
+    user = {'first_name': 'andy', 'last_name': 'Mac', 'email': 'aMac@b', 'phone': '+44 (0) 77777 66666'}
+    print('email = ', user['email']) # very easy to follow this code
     print()
-    # what if the user had an address with several parts in it
+
+    # what if the user object also had an address part with several lines in it
     # we can add a new property or name or field like this
     # we are making the content of a dict property a dict{}, eg; a dict inside a dict
-    andy['address'] = {'street': '98 Lampard Ave', 'city': 'Nottingham', 'postcode': 'NG2 6ZZ'}
+    user['address'] = {'street': '98 Lampard Ave', 'city': 'Nottingham', 'postcode': 'NG2 6ZZ'}
 
-    print(andy)
-    print('postcode = ', andy['address']['postcode'])
+    print(user)
+    print('postcode = ', user['address']['postcode']) # the code makes sense unlike user[0][2]
     print()
     # we will eventually do this for both the messages and sent because they will both 
     # need these friendly field names instead of numbers
 
-    # we will have multiple users, so we store each use object in simple array so we can loop them
+    # we will have multiple users, so we store each use dict object in a simple array so we can loop all users
     users = [] # declare an empty array
-    users.append(andy)
+    users.append(user)
 
     # create another user in one long string
-    andyM = {'first_name': 'andy', 'last_name': 'Maddock', 'email': 'a@Maddock', 'phone': '+44 (0) 77777 232323', 'address': {'street': '98 Hackers Ave', 'city': 'Nottingham', 'postcode': 'NG24 6QQ'}}
-    users.append(andyM)
+    user = {'first_name': 'andy', 'last_name': 'Maddock', 'email': 'a@Maddock', 'phone': '+44 (0) 77777 232323', 'address': {'street': '98 Hackers Ave', 'city': 'Nottingham', 'postcode': 'NG24 6QQ'}}
+    users.append(user)
 
     # we now have 2 users in a simple array  users[0] and users[1] 
-    # we already know how to iterate a simple list each elemnt at a time and access any property
+    # we already know how to iterate a simple list each element at a time and access any data inside it
     # we can add new property's at any time, lets add a preferred contact method to each user
     # the row number isn't much use, users will have a corp ID number too
     users[0]['contact_method'] = 'email'
-    users[0]['id'] =  1234
     users[1]['contact_method'] = 'mqtt'
+    # and a corporate unique user id or name
+    users[0]['id'] = 1234    
     users[1]['id'] = 5678
+    
 
 
-    print('user[0] contact method] = ', users[0]['contact_method'])
-    print('user[1] contact method = ', users[1]['contact_method'])
+    print('user[0][contact_method] = ', users[0]['contact_method'])
+    print('user[1][contact_method] = ', users[1]['contact_method'])
+    print('user[1][address][city] = ', users[1]['address']['city'])
     print()
 
-    # below is a neat way of iterating and finding stuff using the next function 
+    # below is a neat way of finding rows using the next function 
     # find a user with id = 1234 then try with an non existant id 8778777
-    # i'm not gonna explain how this works this right now, you just need to know it can be done
+    # i'm not gonna explain how the next line works right now, you just need to know it can be done
+
     user = next((item for item in users if item["id"] == 5678), False) # will return False if not found
     if(user):
-        print('user email = ', user['email'], ' user id = ', user['id'])
+        print('Found OK id = ', user['id'], ' email = ', user['email'])
     else:
-        print('user not found')
+        print('No user found')
 
-    # we might just want the users array index or row number not the whole user object
+    # we might just want the users[] index or row number not the whole user object
     row_number = next((i for i, user in enumerate(users) if user["id"] == 5678), False)
     print('user id = 5678 has row number = ', row_number)
 
-    # what if there are mulitple results, search for andy?
-    # this method only gets the first match but there are two
+    # what if there are multiple results, search for andy?
+    # this method only gets the first match to 'andy' but there are two
     user = next((item for item in users if item["first_name"] == 'andy'), False) 
     print('first matching user for andy = ', user['email']) # returns just the first one it found
     print()
 
-    # we can use the list and filter methods and return an array list[] of matching rows
+    # we can use the list and filter methods and return an array list[] of ALL matching rows
     user = list(filter(lambda person: person['first_name'] == 'andy', users))
     print('found {} rows with first_name = andy'.format(len(user)))
     print('user[1][email] =', user[1]['email'])
 
     # what we learnt here is 
-    # dict{} contain multiple fields and are easy to read
-    # they are often kept in simple list[] arrays
+    # dict{} contains multiple properties or fields and are easy to read
+    # they are often kept inside simple list[] arrays
     # they can be sorted and filtered with various search methods
-    # not to rely on the row number or index key of a simple array because if one is removed keys will change
+    # never rely on the row number or index key of a simple array because if one is removed keys will change
 
-    # to send out a message to a list of users all we need is a of list their id numbers
-    # we can look up each users properties using the id as we loop the list avoiding duplication
-    # security, if the list of user id's gets accidentally sent out it would be meaningless and has no details
-
-
+    # to send out a message to a list of users all we need is a list their id numbers
+    # we can look up each users properties using just the id
+    # don't copy stuff but point to the original source where possible
 
 
-# Main() always runs, it calls all the other functions
-# uncomment a single line at a time so the output isn't cluttered when you run the script
+
+
+# always have function called main() as the last function which calls all the other functions
+# uncomment a single line at a time in main so the output isn't cluttered when you run the script
 def main():
     print('Main function called\n')
     variables()
     #listArrays()
     #dictLists()
-    # that's it, we will use everything in here at some stage
-    # from here on it's a doddle
-    # in the next step we will build a running basic version in just a few lines of code hopefully
-
 
 # just run main() to kick the entire app off
-# its always the next line after the main function
+# its always the next line after the main() function
 main()
 
