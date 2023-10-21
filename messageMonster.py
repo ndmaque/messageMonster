@@ -1,6 +1,13 @@
-import datetime
+# This how the framework might look after my first thoughts about the workflow
+# There is a list of messages, think of it as a message queue
+# Pending messages can be sent and successful messages details will be put into the sent list
+# The original message status will be updated to 'complete' and stays where it is
+# A new message can be added to the list and marked as 'pending', function not created yet
 
-# some global variables hard coded for now
+# The reason we use a message queue is because sometimes the mail or message server is down and will be auto sent later
+
+
+# These global variables are hard coded for now but gives an idea what the data might look like.
 # TODO move these out of this script and onto a file server or web api like a real world situation
 # 3 messages, 1 sent OK and 2 pending, don't worry about how they got into the message queue right now
 # in this scenario when the script is called it will process any pending messages to all users
@@ -19,62 +26,30 @@ users = [
 
 
 # All the functions go here
+
 def get_bcc_list():
-    bcc = []
-    for user in users:
-        bcc.append('{} <{}>'.format(user['email'], user['email']))
-    
-    return ', '.join(bcc)
+    print('get_bcc_list() called: returns a list of recipients in BCC format')
 
 def send_email(message):
-    # send a mail to the sender and BCC all users
-    email = {}
-    email["From"]    =  '{} <{}>'.format(message['sender_name'], message['sender_email'])
-    email["To"]      = message['sender_email']
-    email["Subject"] = message['subject']
-    email["Body"]    = message['body']
-    email["Bcc"]     = get_bcc_list()
-    # this will eventually be sent to an email server somewhere, either one we create or just use our gmail
-    
-    print('sending email: subject = ', email['Subject']) # we will connect to a server and post the message but print it for now
-    txID = 'abcdef' # when we send mail the server will send back a transaction id or receipt
-    return {'txID': txID, 'To': email['Bcc']} # we can store this in the sent list maybe
+    bccList = get_bcc_list()
+    print('send_email() called: creates email with To, Subject, Body and BCC etc, sends it to a mail server which returns a transaction ID')
 
 def send_mqtt(message):
-    # TODO send a message to each user or group via mtqq
-    print('sending mqtt message')
+    print('send_mqtt() called: IF the message type was mqtt it will format and send using a subscription service')
 
 def print_sent_messages():
-    print('\n\n=======')
-    for msg in messages_sent:
-        msgKey = msg['message_index']
-        text = 'Message:\t{}\ntxID:\t\t{}\nSent:\t\t{}\nSubject:\t{}'.format(msgKey, msg['txID'], msg['date_sent'], messages[msgKey]['subject'] )
-        print(text)
-        print('=======')
-    print()
+    print('print_sent_messages() called: prints a list of all sent message with date time txID Subject and Body etc')
 
-# all functions go here
 def send_pending_messages():
-    # find all 'pending' messages and loop them
-    pending = list(filter(lambda msg: msg['status'] == 'pending', messages))
-    print('Found {} pending messages\n'.format(len(pending)))
+    print('send_pending_messages() called: finds all messages with status=pending and sends them')
+    # iterate for each pending...
+    send_email('a subject and message array')
+    
 
-    for index in range(len(pending)):
-        if(messages[index]['send_method'] == 'email'):
-            response = send_email(messages[index]) # the response has the tsID and the recipients
-
-            # update the message as complete and record it in messages_sent
-            messages[index]['status'] = 'complete'
-            messages[index]['date_sent'] = datetime.datetime.now()
-
-            # insert a new record in messages_sent
-            new_message = {'message_index': index, 'txID': response['txID'], 'date_sent': messages[index]['date_sent'], 'To': response['To']}
-            messages_sent.append(new_message)
-        else:
-            send_mqtt(messages[index])
-
+# main controls the entire show
 def main():
     send_pending_messages()
     print_sent_messages()
 
+# just run main()
 main()
