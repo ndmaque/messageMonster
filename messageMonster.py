@@ -249,7 +249,6 @@ def main():
 # just run main() to kick the entire app off
 main()
 
-
     # main problem is that it sends all the messages to all the users all the time
     # in reality we will have a single message that goes out to selected users or groups
     # the messages_sent list is useless, doesn't tell us what date or who sent it to who and whether it failed 
