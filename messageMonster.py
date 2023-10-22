@@ -17,7 +17,6 @@ users = [
     {'id': 5678,'first_name': 'andy', 'last_name': 'Maddock', 'email': 'a@Maddock', 'phone': '077777 445566', 'contact_method': 'email','address': {'street': '98 Hackers Ave', 'city': 'Nottingham', 'postcode': 'NG24 6QQ'}}
 ]
 
-
 # All the functions go here
 def get_bcc_list():
     bcc = []
