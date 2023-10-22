@@ -6,7 +6,6 @@
 
 # The reason we use a message queue is because sometimes the mail or message server is down and will be auto sent later
 
-
 # These global variables are hard coded for now but gives an idea what the data might look like.
 # TODO move these out of this script and onto a file server or web api like a real world situation
 # 3 messages, 1 sent OK and 2 pending, don't worry about how they got into the message queue right now
