@@ -1,9 +1,9 @@
 # move along nothing to see here
 
 # checkout another branch such as....
-# git checkout basics_1
+# git checkout -b basics_1
 # or
-# git checkout turd_1
+# git checkout -b turd_1
 # or turd_2 etc etc
 
 # to view all branches
