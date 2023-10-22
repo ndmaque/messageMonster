@@ -4,4 +4,5 @@
 # or
 # git checkout turd_1
 
-# git branch to view all branches
+# to to view all branches
+# git branch 
