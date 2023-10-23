@@ -30,7 +30,7 @@ messages_sent = tools.get_data('messages_sent')
 def add_message(sender_name, subject, body):
     # get the current date as an object
     now = datetime.now()
-    # create a string in Y/m/D H/M/S format  NB: month is always lowercase %m, Minutes upper %M
+    # create a string in Y-m-D H:M:S  NB: %m = month  %M = mins
     date_created = now.strftime("%Y-%m-%d %H:%M:%S") 
 
     msg = {
