@@ -12,7 +12,7 @@
 # NB: drag and drop a json file into any browser and see what happens!
 
 # in reality the users list will be in a db or fetched from a server api such as http://corp-hq.uk/users/all
-# today we will emulate that just put the data in local files, it's just a tiny code tweak later to get it from a server api
+# today we will emulate that and just put the data in local files, it's just a tiny code tweak later to get it from a server api
 
 # NB: there's a new folder called files/ in this branch 
 #     and a new file called tools.py for our code separation
