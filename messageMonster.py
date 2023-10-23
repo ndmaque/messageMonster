@@ -61,3 +61,6 @@ main()
 # we saved our data and left it open for other systems to read and write without python skills
 
 # NB: the add_message() method could also go into tools
+# Tip: open a terminal and tail the json files to see changes
+# tail -f files/messages.json
+
