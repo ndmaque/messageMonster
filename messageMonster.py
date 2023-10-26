@@ -15,7 +15,8 @@
 # today we will emulate that and just put the data in local files, it's just a tiny code tweak later to get it from a server api
 
 # NB: there's a new folder called files/ in this branch 
-#     and a new file called tools.py for our code separation
+#     and a new file called tools.py for our code separation 
+#
 
 
 from datetime import datetime
