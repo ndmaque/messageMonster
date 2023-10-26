@@ -7,4 +7,4 @@
 # or turd_2 etc etc
 
 # to view all branches
-# git branch 
+# git branch -a
