@@ -78,7 +78,7 @@ def check_for_new_messages():
     files = [fn for fn in os.listdir(folder) if os.path.isfile(folder + fn)]
     
     if(len(files) > 0) :
-        playsound('sound_files/submarine_ping.mp3')
+        #playsound('sound_files/submarine_ping.mp3')
         file_name = files[0]
         file_path = folder + file_name
         message = parse_inbox_message(file_path)
