@@ -2,13 +2,21 @@
     {
         "first_name": "Andy",
         "last_name": "Mac",
-        "email": "a@b.com",
+        "uid": "AM-6875",
+        "role": "IT",
+        "address": {"line_1": "100 Somat Street", "line_2": "camden", "city": "London", "county": "", "zip": "EC1 2FG"},
+        "contact_method": "mqtt",
+        "email": "andy.mcintyre@corphq.uk",
         "phone": "07808123456"
     },
     {
         "first_name": "Andy",
         "last_name": "Maddock",
-        "email": "a@maddock.com",
+        "uid": "AM-1234",
+        "role":"IT",
+        "address": {"line_1": "15a Marborough Rd", "line_2": "Evinford", "city": "Bobsborough", "county": "", "zip": "BB16 3PP"},        
+        "contact_method": "email",
+        "email": "andy.maddock@corphq.uk",
         "phone": "+44 (0) 7808123456"
     }
 ]
