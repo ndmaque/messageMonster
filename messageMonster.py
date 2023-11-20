@@ -1,38 +1,38 @@
-# Basics 2: The separation of code and data
-
-# 1) use json text files as a database so we can store data externally and not inside this script 
-# 2) move some functions into another file and import them because all programs get messy eventually
-
-# the users and message lists can and should be stored outside of the python script
-# this will solve the problem that the script always starts with no sent messages
-# we dont some novice hacking around inside our script and breaking the code just to add a new user
-
-# json files are awesome and used everywhere, they store program arrays as a simple text file
-# every language can read and write json, it is the universal way to send data from server to server
-# NB: drag and drop a json file into any browser and see what happens!
-
-# in reality the users list will be in a db or fetched from a server api such as http://corp-hq.uk/users/all
-# today we will emulate that and just put the data in local files, it's just a tiny code tweak later to get it from a server api
-
-# NB: there's a new folder called files/ in this branch 
-#     and a new file called tools.py for our code separation 
+# Basics : Simple Web Api server 
 #
+# in a new terminal 
+# cd messageMonster/api/
+# there is new js file, it's a web server, use node to run it
+# node api.js
+# check yr browser...
+# http://localhost:3000/api/users 
+# http://localhost:3000/api/users/1
+# http://localhost:3000/api/messages
+# http://localhost:3000/api/messages_sent
+# http://localhost:3000 
+# 
 
 
 from datetime import datetime
 import time
 import os
-# we had to run the python package installer pip for this library playsound:
-# pip install playsound
+import grequests
+import requests
+import httpx
+
+import json
 from playsound import playsound
 
 import tools # imports our own custom functions to save clutter in this script
 
+# node should be running the server in folder api/api.js
+api_url = 'http://localhost:3000/api/'
 
 # declare and populate global variables
-users = tools.get_data('users')
-messages = tools.get_data('messages')
-messages_sent = tools.get_data('messages_sent')
+# populate from web api 
+users = requests.get(api_url + 'users').json()
+messages = requests.get(api_url +'messages').json()
+messages_sent = requests.get(api_url + 'messages_sent').json()
 
 
 # TODO move to tools.py
@@ -44,10 +44,10 @@ def add_message(sender_email, subject, body):
 
     msg = {
         'sender_name': '', 
-        'sender_email': sender_email, 
-        'send_method': 'email', 
+        'sender_email': sender_email,
         'date_created': date_created, 
-        'status': 'pending',  
+        'status': 'pending', 
+        'topics': ['chat', 'users/msg'], 
         'subject': subject, 
         'body': body
     }
@@ -55,7 +55,7 @@ def add_message(sender_email, subject, body):
     messages.append(msg)
 
     # save messages array into the json file
-    tools.save_data('messages', messages)
+    tools.post_api_data(api_url+'message', msg)
 
 # TODO move to tools.py
 def parse_inbox_message(file_path):
@@ -93,6 +93,7 @@ def check_for_new_messages():
             os.remove(file_path)
 
 def main():
+    print('{} Users\n{} Messages\n{} Sent'.format(len(users), len(messages), len(messages_sent)))
     # run forever checking for new files 
     while True:
         check_for_new_messages()

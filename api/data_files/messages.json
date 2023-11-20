@@ -1,0 +1,20 @@
+[
+    {
+        "sender_name": "",
+        "sender_email": "andy.mcintyre@corphq.uk",
+        "send_method": "email",
+        "date_created": "2023-11-19 19:57:23",
+        "status": "pending",
+        "subject": "FILE_SERVER_XYZ cpu temp is high 64C",
+        "body": "The processes seem to be wonky\nplease check it out\nthanks\n2023-10-16 18:31\n"
+    },
+    {
+        "sender_name": "",
+        "sender_email": "andy.maddock@corphq.uk",
+        "send_method": "email",
+        "date_created": "2023-11-19 19:57:25",
+        "status": "pending",
+        "subject": "NAS_SERVER_ABC disk storage low 4.2mb free",
+        "body": "not sure what's causing this\nplease check it out and let me know the outcome\nthanks\n2023-10-15 18:39\n"
+    }
+]
