@@ -38,11 +38,16 @@ app.get('/api/users', (req, res) => {
     data = getObjFromJsonFile(USERS)
     res.send(data)
 })
-app.get('/api/users/:idx', (req, res) => {
-    console.log(req.params)
-    let idx = req.params.idx;
-    data = getObjFromJsonFile(USERS)
-    res.send(data[idx])
+app.get('/api/users/:id', (req, res) => {
+    const UID = req.params.id; // get the actual id from part of the url :id save it as UID 
+    users = getObjFromJsonFile(USERS) // get all the users.json as a js object, an aray of users
+    user = users.filter(x => x.id == UID); // filter the users that have an 'id' of the url UID, the x is simply a temp name for the users array while inside the filter operation, we can call it whatever we like x , stuff blah
+    // there should be exactly one record found, anything else is treated as garbage
+    if(user.length == 1) {
+        res.status(200).send(user)
+    } else { 
+        res.status(400).send('item not found')
+    }
 })
 app.post('/api/users/add', (req, res) => {
     users = getObjFromJsonFile(USERS)
