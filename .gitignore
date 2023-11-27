@@ -1,3 +1,3 @@
 __*
 node_modules
-inbox_rejects
+inbox_rejects/*.bad
