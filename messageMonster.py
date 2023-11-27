@@ -65,7 +65,7 @@ def main():
     # Load dummy data: copy the /inbox_examples files to /inbox so we have something to process
     shutil.copytree('inbox_examples', 'inbox', ignore=ignore_patterns('\.git*'), dirs_exist_ok=True)
 
-    # loop forever checking for new files to read and post to the api storage
+    # loop forever checking for new files to read and post to the api storage 
     while True:
         tools.process_inbox_messages(messages, api_url)
         time.sleep(1)

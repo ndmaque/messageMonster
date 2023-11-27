@@ -2,5 +2,3 @@ __*
 node_modules
 inbox_rejects
 data_files
-messages.json
-messageMonster.py
