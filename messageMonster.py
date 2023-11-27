@@ -35,8 +35,6 @@
 # http://localhost:3000                     an html page
 # Yay node web server is running
 
-
-from datetime import datetime
 import time
 import shutil
 import tools # imports tools.py with our custom functions to save clutter
@@ -66,6 +64,7 @@ main()
 # and most of our 'helper' functions don't need to be in here either, just the core code
 # json is a common language that everyone speaks
 # we saved our data externally for other systems to read and write
+# add try: exception: blocks to make code more robust
 
 
 # Tip: open a terminal and tail the messages.json files to see changes
