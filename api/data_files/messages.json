@@ -704,5 +704,33 @@
         ],
         "content": "FILE_SERVER_ABC cpu temp is high 64C\nThe processes seem to be wonky\nplease check it out\nthanks\n2023-10-16 18:31",
         "status": "pending"
+    },
+    {
+        "sender_email": "andy.maddock@corphq.uk",
+        "topics": [
+            "msg/bobsmith"
+        ],
+        "content": "Fancy a coffee?",
+        "status": "pending"
+    },
+    {
+        "sender_email": "andy.maddock@corphq.uk",
+        "topics": [
+            "msg/admin",
+            "msg/accounts",
+            "msg/bobsmith"
+        ],
+        "content": "FILE_SERVER_XYZ ssl cert expired please buy another\nsend me the pem files asap\nthanks\n2023-10-16 18:31",
+        "status": "pending"
+    },
+    {
+        "sender_email": "andy.mcintyre@corphq.uk",
+        "topics": [
+            "msg/it",
+            "msg/admin",
+            "msg/amaddock"
+        ],
+        "content": "FILE_SERVER_ABC cpu temp is high 64C\nThe processes seem to be wonky\nplease check it out\nthanks\n2023-10-16 18:31",
+        "status": "pending"
     }
 ]
